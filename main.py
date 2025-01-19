@@ -9,9 +9,9 @@ import cv2
 import numpy as np
 import imgaug.augmenters as iaa
 from PIL import Image, ImageDraw, ImageFont
-import random
 import string
 import os
+import secrets
 
 # Data Preparation with Synthetic Data
 class HandwritingDataset(Dataset):
@@ -37,8 +37,8 @@ class HandwritingDataset(Dataset):
         return self.num_samples
 
     def __getitem__(self, idx):
-        char = random.choice(string.ascii_letters + string.digits)
-        font = random.choice(self.fonts)
+        char = secrets.choice(string.ascii_letters + string.digits)
+        font = secrets.choice(self.fonts)
         img = self.generate_image(char, font)
         img = np.array(img)
 
